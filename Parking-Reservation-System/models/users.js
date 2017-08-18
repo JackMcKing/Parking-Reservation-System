@@ -4,7 +4,7 @@ var dbname = "prs_alpha";
 var pool = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "bionicle1017"
+    password: "root1234"
 });
 
 pool.on('connection', function (connection) {
@@ -41,7 +41,7 @@ pool.getConnection(function (err, connection) {
             userpass: this.userpass
         };
 
-        var insertUser_Sql = "INSERT INTO userinfo(Id, UserName, UserPass) VALUES(0, ?, ?)";
+        var insertUser_Sql = "INSERT INTO userinfo(id, username, userpass) VALUES(0, ?, ?)";
 
         connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result) {
 
@@ -50,7 +50,7 @@ pool.getConnection(function (err, connection) {
                 return;
             }
 
-            connection.release();
+            //connection.release();
 
             console.log('invoked[save]');
             callback(err, result);
@@ -70,7 +70,7 @@ pool.getConnection(function (err, connection) {
                 return;
             }
 
-            connection.release();
+           // connection.release();
 
             console.log('invoked[getUserNumByName]');
             callback(err, result);
@@ -90,7 +90,7 @@ pool.getConnection(function (err, connection) {
                 return
             }
 
-            connection.release();
+           // connection.release();
 
             console.log('invoke[getUserByUserName]');
             callback(err, result);
