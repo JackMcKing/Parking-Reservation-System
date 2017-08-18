@@ -1,10 +1,10 @@
 var mysql = require('mysql');
-var dbname = 'prs_alpha';
+var dbname = "prs_alpha";
 
 var pool = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "root1234",
+    password: "bionicle1017"
 });
 
 pool.on('connection', function (connection) {
@@ -22,7 +22,7 @@ module.exports = User;
 
 pool.getConnection(function (err, connection) {
 
-    var useDbSql = 'USE' + dbname;
+    var useDbSql = 'USE ' + dbname;
     connection.query(useDbSql, function (err) {
 
         if (err) {
@@ -86,7 +86,7 @@ pool.getConnection(function (err, connection) {
         connection.query(getUserByUserName_Sql, [username], function (err, result) {
 
             if (err) {
-                console.log('getUserByUserName Error: ' + err.message)
+                console.log('getUserByUserName Error: ' + err.message);
                 return
             }
 
