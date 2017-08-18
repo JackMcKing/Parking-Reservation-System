@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+
     <title><%= title %></title>
 
     <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
@@ -10,14 +11,6 @@
 
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
-
-    <script type="text/javascript">
-        function submitFun() {
-            document.getElementById("uid").submit();
-            document.getElementById("password").submit();
-            document.getElementById("permission").submit();
-        }
-    </script>
 
 </head>
 
@@ -41,7 +34,15 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">登陆 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="reg">注册</a></li>
+                    <li><a href="reg.ejs">注册</a></li>
+
+                    <% if (locals.username) { %>
+                        <li><a href="#"
+                                <%= username %>
+                        </a></li>
+                    <li><a href="/logout">注销</a> </li>
+
+                    <% } %>
                 </ul>
                 <form class="navbar-form navbar-left">
 
@@ -57,28 +58,10 @@
 
     <div class="jumbotron">
 
-        <h1>没车位停车场预约系统</h1>
-
-        <!-- input form-->
-        <form onsubmit="submitFun()">
-            <div class="form-group">
-                <label for="exampleInputEmail1">用户名</label>
-                <input type="email" class="form-control" name="username" placeholder="UID在这">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control" name="password" placeholder="这是密码">
-            </div>
-            <div class="checkbox">
-                <select id="permission">
-                    <option value="user">用户</option>
-                    <option value="admin">管理员</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">登 录</button>
-        </form>
-
+    <h1>没车位停车场预约系统</h1>
+        <p>你好，旅行者。</p>
     </div>
+</div>
 </div>
 </body>
 
