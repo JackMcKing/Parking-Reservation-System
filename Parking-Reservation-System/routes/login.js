@@ -15,13 +15,13 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 
-    var userName = req.body['txtUserName'],
-        userPwd = req.body['txtUserPwd'],
-        isRem = req.body['chbRem'];
+    var userName = req.body.txtUserName,
+        userPwd = req.body.txtUserPwd,
+        isRem = req.body.chbRem;
 
-    User.getUserByUserName(userName, function (err, results) {
+    User.getUserByUserName(userName, function (err, result) {
 
-        if(results === '') {
+        if(result[0] === undefined) {
 
             res.locals.error = "用户不存在";
             res.render('login',{
@@ -32,8 +32,7 @@ router.post('/', function(req, res) {
 
         }
 
-        //results[0].UserName = undefined;
-        if(results[0].UserName !== userName || results[0].UserPass !== userPwd) {
+        if(result[0].username !== userName || result[0].userpass !== userPwd) {
 
             res.locals.error = "用户名或密码错误";
             res.render('login',{

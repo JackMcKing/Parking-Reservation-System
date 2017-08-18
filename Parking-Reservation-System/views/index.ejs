@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-
     <title><%= title %></title>
 
-    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="../public/stylesheets/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-theme.css" type="text/css">
 
-    <script src="../public/javascripts/jquery.min.js"></script>
-    <script src="../public/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
 
 </head>
 
@@ -28,13 +27,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">Flint</a>
-            </div>a
+            </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <% if (locals.username) { %>
-                    <li><a href="#">
+                    <li class="active"><a href="#">
                         <%= username %>
                         </a></li>
                     <li><a href="/logout">注销</a> </li>
