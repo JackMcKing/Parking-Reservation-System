@@ -69,18 +69,30 @@
         <h1>没车位停车场预约系统</h1>
 
         <!-- input form-->
+<<<<<<< HEAD
         <form id=regform role="form" method="post">
+=======
+        <form role="form" method="post">
+>>>>>>> origin/dev
             <div class="form-group">
                 <label for="txtUserName">Email</label>
                 <input type="email" class="form-control" name="txtUserName" placeholder="输入要注册邮箱" required>
             </div>
             <div class="form-group">
                 <label for="txtUserPwd">密码</label>
+<<<<<<< HEAD
                 <input type="password" class="form-control" id="txtUserPwd" name="txtUserPwd" placeholder="输入密码" required>
             </div>
             <div class="form-group">
                 <label for="txtUserRePwd">确认密码</label>
                 <input type="password" class="form-control" id="txtUserRePwd" name="txtUserRePwd" placeholder="再次输入密码" required>
+=======
+                <input type="password" class="form-control" name="txtUserPwd" placeholder="输入密码" required>
+            </div>
+            <div class="form-group">
+                <label for="txtUserRePwd">确认密码</label>
+                <input type="password" class="form-control" name="txtUserRePwd" placeholder="再次输入密码" required>
+>>>>>>> origin/dev
             </div>
 
             <button id="btnSub" type="submit" class="btn btn-primary" >注 册</button>
@@ -105,6 +117,10 @@
                 for (var key in args) {
 
                     if (args[key] !== undefined) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/dev
                         var reg = new RegExp("({" + key + "})", "g");
                         result = result.replace(reg, args[key]);
                     }
@@ -126,6 +142,7 @@
 
     };
 
+<<<<<<< HEAD
 //    function CheckPWD(){
 //    if (document.regform.txtUserPwd.value != document.form.txtUserRePwd.value) {
 //        alert("您两次输入的密码不一样！请重新输入.");
@@ -135,4 +152,6 @@
 //    return true;
 //    }
 
+=======
+>>>>>>> origin/dev
 </script>
