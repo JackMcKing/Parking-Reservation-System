@@ -56,7 +56,7 @@ router.post('/', function (req, res) {
 
             }else{
 
-                rel.locals.error = err;
+                res.locals.error = err;
 
             }
 
