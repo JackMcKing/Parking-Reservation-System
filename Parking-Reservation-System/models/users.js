@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
     host: "127.0.0.1",
     user: "root",
-    password: "root1234",
+    password: "root123",
     database: "prs_alpha",
     port: 3306
 });
@@ -20,21 +20,6 @@ function User(user){
     this.userpass = user.userpass;
 }
 
-/*
-pool.getConnection(function (err, connection) {
-
-    var useDbSql = 'USE ' + dbname;
-    connection.query(useDbSql, function (err) {
-
-        if (err) {
-            console.log('USE Error: ' + err.message);
-            return;
-        }
-
-        console.log('USE SUCCEED');
-
-    });
-    */
 
 //save data
     User.prototype.save = function save(callback) {
@@ -44,7 +29,7 @@ pool.getConnection(function (err, connection) {
             userpass: this.userpass
             };
 
-        var insertUser_Sql = "INSERT INTO userinfo (id, username, userpass) VALUES (0, ?, ?)";
+        var insertUser_Sql = "INSERT INTO user_info (USER_ID, USER_NAME, USER_PW) VALUES (0, ?, ?)";
 
         pool.getConnection(function (err, connection) {
             connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result) {
@@ -72,7 +57,7 @@ pool.getConnection(function (err, connection) {
             console.log("getConnection");
             console.log("getUserNumByName");
 
-            var getUserNumByName_Sql = "SELECT COUNT(1) AS num FROM userinfo WHERE username = ?";
+            var getUserNumByName_Sql = "SELECT COUNT(1) AS num FROM user_info WHERE USER_NAME = ?";
             connection.query(getUserNumByName_Sql, [username], function (err, result) {
 
                 if (err) {
@@ -90,7 +75,7 @@ pool.getConnection(function (err, connection) {
 //get user info
     User.getUserByUserName = function getUserNumByName(username, callback) {
 
-        var getUserByUserName_Sql = "SELECT * FROM userinfo WHERE username = ?";
+        var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
 
         pool.getConnection(function (err, connection) {
             if (err) throw err;

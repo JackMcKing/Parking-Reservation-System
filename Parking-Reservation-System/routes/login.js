@@ -32,7 +32,7 @@ router.post('/', function(req, res) {
 
         }
 
-        if(result[0].username !== userName || result[0].userpass !== userPwd) {
+        if(result[0].USER_NAME !== userName || result[0].USER_PW !== userPwd) {
 
             res.locals.error = "用户名或密码错误";
             res.render('login',{
