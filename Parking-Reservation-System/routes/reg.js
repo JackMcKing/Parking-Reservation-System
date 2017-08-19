@@ -1,31 +1,34 @@
 var express = require('express');
 var router = express.Router();
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+
 var User = require('../models/users.js');
 var TITLE_REG = '注册';
 
 router.get('/', function (req,res) {
-
     res.render('reg', {
         title: TITLE_REG
     });
-
 });
 
 router.post('/', function (req, res) {
 
-    var userName = req.body['txtUserName'],
-        userPwd = req.body['txtUserPwd'],
-        userRePwd = req.body['txtUserRePwd'];
-
+    var userName = req.body.txtUserName;
+    var userPwd = req.body.txtUserPwd;
     var newUser = new User({
         username: userName,
         userpass: userPwd
     });
 
-    //check if userName already exist
-    User.getUserByUserName(newUser.username, function (err, results) {
+    console.log('req.body userName: ' + userName);
+    console.log('req.body userPwd: ' + userPwd);
 
-        if (results != null && results[0]['num'] > 0) {
+    //check if userName already exist
+    User.getUserByUserName(newUser.username, function (err, result) {
+
+        if (result !== null && result[0] > 0) {
             err = '用户名已存在';
         }
 
@@ -48,9 +51,13 @@ router.post('/', function (req, res) {
             }
 
             if (result.insertId > 0){
-                res.locals.success = '注册成功, 请 <a class="btn btn-link" href="/login" role = "button"> 登陆 </a>' ;
+
+                res.locals.success = "注册成功, 请登陆";
+
             }else{
+
                 rel.locals.error = err;
+
             }
 
             res.render('reg', {

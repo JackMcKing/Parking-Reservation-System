@@ -8,21 +8,27 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-theme.css" type="text/css">
 
-    <script src="/javascripts/jquery.min.js"></script>
-    <script src="/javascripts/bootstrap.js"></script>
-
-    <script type="text/javascript">
-        function submitFun() {
-            document.getElementById("uid").submit();
-            document.getElementById("password").submit();
-            document.getElementById("permission").submit();
-        }
-    </script>
+    <script src="/javascripts/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/bootstrap.js" type="text/javascript"></script>
 
 </head>
 
 <body>
-<div class="container">
+
+    <div id="container" class="container">
+        <% if (locals.success) { %>
+        <div id="alt_success" class="alert alert-success">
+            <%- success %>
+        </div>
+        <% } %>
+
+        <% if (locals.error) { %>
+        <div id="alt_warning" class="alert alert-warning">
+            <%= error %>
+        </div>
+        <% } %>
+
+    <div class="container">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Flint</a>
+                <a class="navbar-brand" href="/">Flint</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,22 +66,31 @@
         <h1>没车位停车场预约系统</h1>
 
         <!-- input form-->
-        <form onsubmit="submitFun()">
+        <form role="form" method="post">
             <div class="form-group">
-                <label for="exampleInputEmail1">用户名</label>
-                <input type="email" class="form-control" name="username" placeholder="UID在这">
+                <label for="txtUserName">用户名</label>
+                <input type="email" class="form-control" name="txtUserName" placeholder="UID在这">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control" name="password" placeholder="这是密码">
+                <label for="txtUserPwd">密码</label>
+                <input type="password" class="form-control" name="txtUserPwd" placeholder="这是密码">
             </div>
+
+            <div>
+                <label>
+                    <input name="chbRem" id="chbRem" type="checkbox" value="remember-me">记住密码
+                </label>
+            </div>
+            <!--
             <div class="checkbox">
-                <select id="permission">
+                <select name="permission">
                     <option value="user">用户</option>
                     <option value="admin">管理员</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">登 录</button>
+            -->
+
+            <button id="btnSub" type="submit" class="btn btn-primary">登 录</button>
         </form>
 
     </div>
@@ -83,3 +98,39 @@
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+
+    String.prototype.format = function (args) {
+        var result = this;
+
+        if (arguments.length > 0) {
+
+            if (arguments.length === 1 && typeof (args) === "object") {
+
+                for (var key in args) {
+
+                    if (args[key] !== undefined) {
+
+                        var reg = new RegExp("({" + key + "})", "g");
+                        result = result.replace(reg, args[key]);
+
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < arguments.length; i++) {
+
+                    if (arguments[i] !== undefined) {
+
+                        var reg = new RegExp("({)" + i + "(})", "g");
+                        result = result.replace(reg, arguments[i]);
+
+                    }
+                }
+            }
+        }
+        return result;
+    };
+</script>

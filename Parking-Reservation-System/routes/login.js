@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+
 var User = require('../models/users.js');
 var TITLE_LOGIN = '登录';
 
@@ -10,42 +14,45 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    var userName = req.body['txtUserName'],
-        userPwd = req.body['txtUserPwd'],
-        isRem = req.body['chbRem'];
 
-    User.getUserByUserName(userName, function (err, results) {
+    var userName = req.body.txtUserName,
+        userPwd = req.body.txtUserPwd,
+        isRem = req.body.chbRem;
 
-        if(results == '')
-        {
-            res.locals.error = '用户不存在';
+    User.getUserByUserName(userName, function (err, result) {
+
+        if(result[0] === undefined) {
+
+            res.locals.error = "用户不存在";
             res.render('login',{
-                title:TITLE_LOGIN
+                title: TITLE_LOGIN
             });
+
             return;
+
         }
 
-        if(results[0].UserName != userName || results[0].UserPass != userPwd)
-        {
-            res.locals.error = '用户名或密码错误';
+        if(result[0].username !== userName || result[0].userpass !== userPwd) {
+
+            res.locals.error = "用户名或密码错误";
             res.render('login',{
-                title:TITLE_LOGIN
+                title: TITLE_LOGIN
             });
             console.log(1);
-            return;
-        }
-        else
-        {
-            if(isRem)
-            {
+
+        } else {
+
+            if(isRem) {
+
                 res.cookie('islogin', userName, { maxAge: 60000 });
+
             }
 
             res.locals.username = userName;
             req.session.username = res.locals.username;
             console.log(req.session.username);
             res.redirect('/');
-            return;
+
         }
     });
 });
