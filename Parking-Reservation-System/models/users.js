@@ -29,7 +29,7 @@ function User(user){
             userpass: this.userpass
             };
 
-        var insertUser_Sql = "INSERT INTO user_info (USER_ID, USER_NAME, USER_PW) VALUES (0, ?, ?)";
+        var insertUser_Sql = "INSERT INTO user_info (USER_ID, USER_NAME, USER_PW) VALUES (?, ?, ?)";
 
         pool.getConnection(function (err, connection) {
             connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result) {
