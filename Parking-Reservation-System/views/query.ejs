@@ -14,6 +14,21 @@
 </head>
 
 <body>
+
+<div id="container" class="container">
+    <% if (locals.success) { %>
+    <div id="alt_success" class="alert alert-success">
+        <%= success %>
+    </div>
+    <% } %>
+
+    <% if (locals.error) { %>
+    <div id="alt_warning" class="alert alert-warning">
+        <%= error %>
+    </div>
+    <% } %>
+</div>
+
 <div class="container">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -29,12 +44,12 @@
                 <a class="navbar-brand" href="/">Flint</a>
             </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <% if (locals.username) { %>
                     <li class="active"><a href="#">
-                        <%= username %>
+                            <%= username %>
                         </a></li>
                     <li><a href="/logout">注销</a> </li>
                     <% } %>
@@ -49,33 +64,41 @@
 </div> <!--nav bar-->
 
 
-
-
 <div class="container"> <!-- header-->
 
     <div class="jumbotron">
-        <h2>欢迎使用没车位停车场预约系统<small>你好，旅行者</small></h2>
+        <h2>车位信息</h2>
     </div>
 
     <div class="jumbotron">
 
-        <form action="/query">
-            <input class="btn btn-primary btn-lg btn-block" type="submit" value="点此查看车位信息">
-        </form>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>车位编号</th>
+                <th>车位层数</th>
+                <th>车位区域</th>
+                <th>车位状态</th>
+            </tr>
+            </thead>
 
-        <form action="/myres">
-            <input class="btn btn-default btn-lg btn-block" type="submit" value="点此查看我的预约">
-        </form>
+            <tbody>
+            <% for (var i=0; i < result.length; i++) { %>
+            <tr>
+                <td><%= result[i].PS_ID %></td>
+                <td><%= result[i].PS_FLOOR %></td>
+                <td><%= result[i].PS_ZONE %></td>
+                <td><%= result[i].PS_EMPTY %></td>
+            </tr>
+            <% { %>
+            </tbody>
+
+        </table>
+
 
     </div>
 
 </div>
-
-
-
-
-
-
 
 
 
