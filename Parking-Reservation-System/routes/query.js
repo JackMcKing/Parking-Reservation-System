@@ -7,6 +7,7 @@ var TITLE_QUERY = '查詢';
 
 router.get('/', function (req, res) {
     var pkinfo = new PKinfo();
+
     pkinfo.query(function (err, result) {
         if (err) {
             res.status(404).end(err);

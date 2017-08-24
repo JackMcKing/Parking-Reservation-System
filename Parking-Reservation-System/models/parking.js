@@ -30,7 +30,6 @@ pool.getConnection(function (err, connection) {
                 return;
             }
             console.log("invoke");
-            connection.release();
             callback(err, result);
         });
     }
