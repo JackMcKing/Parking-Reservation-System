@@ -12,8 +12,7 @@ var reg = require('./routes/reg');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var admin = require('./routes/admin');
-var query = require('./routes/query');
-var myres = require('./routes/myres');
+//var reserve = require('./routes/reserve');
 
 var app = express();
 
@@ -36,8 +35,7 @@ app.use('/reg', reg);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/admin', admin);
-app.use('/query', query);
-app.use('/myres', myres);
+//app.use('/reserve', reserve);
 
 
 

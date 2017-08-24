@@ -47,6 +47,7 @@ User.prototype.save = function save(callback) {
     });
 };
 
+
 //get user number
 User.getUserNumByName = function getUserNumByName(username, callback) {
 

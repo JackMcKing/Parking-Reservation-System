@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div class="container">
+<div id="top" class="container">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,7 +49,7 @@
 
 
 
-<div class="container"> <!-- header-->
+<div id="bottom" class="container"> <!-- header-->
 
     <div class="jumbotron">
         <h2>欢迎使用没车位停车场预约系统<small>你好，旅行者</small></h2>
@@ -57,34 +57,95 @@
 
     <div class="jumbotron">
 
-        <form action="query">
-            <input class="btn btn-primary btn-lg btn-block" type="submit" value="点此查看车位信息">
-        </form>
+        <button id="btn1" type="button" class="btn btn-primary btn-lg btn-block">點此查看車位狀態</button>
 
-        <form action="myres">
-            <input class="btn btn-default btn-lg btn-block" type="submit" value="点此查看我的预约">
-        </form>
+        <div id="db_table1">
 
+            <table class="table table-hover table-bordered" >
+                <thead>
+                <tr class="active">
+                    <th>车位编号</th>
+                    <th>车位层数</th>
+                    <th>车位区域</th>
+                    <th>车位状态</th>
+                </tr>
+                </thead>
 
-        <!-- do not remove these
-        <form>
-            <input onclick='window.location="/query"; return false;' value="test" type="submit" />
-        </form>
-        -->
+                <tbody>
+                <% for (var i=0; i < items.length; i++) { %>
+                <tr>
+                    <td><%= items[i].PS_ID %></td>
+                    <td><%= items[i].PS_FLOOR %></td>
+                    <td><%= items[i].PS_ZONE %></td>
+                    <td><%= items[i].PS_EMPTY %></td>
+                    <td><a href="dores">預約</a> </td>
+                </tr>
+                <% } %>
+                </tbody>
+
+            </table>
+        </div>
+
+        <button id="btn2" type="button" class="btn btn-default btn-lg btn-block">點此查看我的預約</button>
+
+        <div id="db_table2">
+
+            <table class="table table-hover table-bordered" >
+                <thead>
+                <tr class="active">
+                    <th>车位编号</th>
+                    <th>车位层数</th>
+                    <th>车位区域</th>
+                    <th>车位状态</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% for (var i=0; i < items.length; i++) { %>
+                <tr>
+                    <td><%= items[i].PS_ID %></td>
+                    <td><%= items[i].PS_FLOOR %></td>
+                    <td><%= items[i].PS_ZONE %></td>
+                    <td><%= items[i].PS_EMPTY %></td>
+                </tr>
+                <% } %>
+                </tbody>
+
+            </table>
+
+        </div>
+
 
     </div>
 
 </div>
 
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#bottom').hide();
+        $('#bottom').fadeIn(400);
+
+        $('#db_table1').hide();
+        $('#btn1').click(function () {
+
+            $(this).next().slideToggle(200);
+
+        });
+
+        $('#db_table2').hide();
+        $('#btn2').click(function () {
+
+            $(this).next().slideToggle(400);
+
+        });
+
+    });
+
+</script>

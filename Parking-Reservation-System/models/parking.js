@@ -1,6 +1,4 @@
 var mysql = require('mysql');
-//var express = require('express');
-//var PKinfo = express.Router();
 
 var pool = mysql.createPool({
     host: '127.0.0.1',
@@ -29,7 +27,7 @@ pool.getConnection(function (err, connection) {
                 console.log("query parkspace Error" + err.message);
                 return;
             }
-            console.log("invoke");
+            console.log("invoke PKinfo");
             callback(err, result);
         });
     }
