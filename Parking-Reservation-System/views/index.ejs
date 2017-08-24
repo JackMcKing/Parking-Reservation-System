@@ -33,9 +33,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <% if (locals.username) { %>
-                    <li class="active"><a href="#">
-                        <%= username %>
-                        </a></li>
+                    <li class="active"><a href="#"><%= username %></a></li>
                     <li><a href="/logout">注销</a> </li>
                     <% } %>
                 </ul>
@@ -59,13 +57,20 @@
 
     <div class="jumbotron">
 
-        <form action="/query">
+        <form action="query">
             <input class="btn btn-primary btn-lg btn-block" type="submit" value="点此查看车位信息">
         </form>
 
-        <form action="/myres">
+        <form action="myres">
             <input class="btn btn-default btn-lg btn-block" type="submit" value="点此查看我的预约">
         </form>
+
+
+        <!-- do not remove these
+        <form>
+            <input onclick='window.location="/query"; return false;' value="test" type="submit" />
+        </form>
+        -->
 
     </div>
 

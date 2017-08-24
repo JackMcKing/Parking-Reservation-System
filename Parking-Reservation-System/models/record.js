@@ -37,7 +37,7 @@ Record.getRecordByUserName = function getRecordByName(username, callback) {
 
             if (err) {
                 console.log("getRecordByUserName Error: " + err.message);
-                return
+                return;
             }
 
             connection.release();
@@ -48,3 +48,4 @@ Record.getRecordByUserName = function getRecordByName(username, callback) {
     });
 
 };
+

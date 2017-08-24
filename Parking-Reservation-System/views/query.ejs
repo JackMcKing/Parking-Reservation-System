@@ -72,36 +72,37 @@
 
     <div class="jumbotron">
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>车位编号</th>
-                <th>车位层数</th>
-                <th>车位区域</th>
-                <th>车位状态</th>
-            </tr>
-            </thead>
+        <form method="post" id="queryPK">
 
-            <tbody>
-            <% for (var i=0; i < result.length; i++) { %>
-            <tr>
-                <td><%= result[i].PS_ID %></td>
-                <td><%= result[i].PS_FLOOR %></td>
-                <td><%= result[i].PS_ZONE %></td>
-                <td><%= result[i].PS_EMPTY %></td>
-            </tr>
-            <% { %>
-            </tbody>
+            <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>车位编号</th>
+                    <th>车位层数</th>
+                    <th>车位区域</th>
+                    <th>车位状态</th>
+                </tr>
+                </thead>
 
-        </table>
+                <tbody>
+                <% for (var i=0; i < items.length; i++) { %>
+                <tr>
+                    <td><%= items[i].PS_ID %></td>
+                    <td><%= items[i].PS_FLOOR %></td>
+                    <td><%= items[i].PS_ZONE %></td>
+                    <td><%= items[i].PS_EMPTY %></td>
+                </tr>
+                <% } %>
+                </tbody>
+
+            </table>
+
+        </form>
 
 
     </div>
 
 </div>
-
-
-
 
 </body>
 

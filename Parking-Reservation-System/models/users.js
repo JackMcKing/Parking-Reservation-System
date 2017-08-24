@@ -32,6 +32,7 @@ User.prototype.save = function save(callback) {
     var insertUser_Sql = "INSERT INTO user_info (USER_ID, USER_NAME, USER_PW) VALUES (0, ?, ?)";
 
     pool.getConnection(function (err, connection) {
+
         connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result) {
 
             if (err) {
@@ -44,7 +45,6 @@ User.prototype.save = function save(callback) {
 
         });
     });
-
 };
 
 //get user number
