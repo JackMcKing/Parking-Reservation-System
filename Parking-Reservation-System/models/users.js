@@ -116,6 +116,24 @@ User.getUserpermissionByUserName = function getUserpermissionByUserName(username
             connection.release();
             callback(err, result);
 
+
+    var getUserpermissionByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
+
+    pool.getConnection(function (err, connection) {
+
+        if (err) throw err;
+        connection.query(getUserpermissionByUserName_Sql, [username], function (err, result) {
+
+            if (err) {
+                console.log("getUserpermissionByUserName Error: " + err.message);
+                return
+            }
+            console.log(result);
+            
+
+            connection.release();
+            callback(err, result);
+
         });
 
     });
