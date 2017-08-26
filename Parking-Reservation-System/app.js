@@ -12,6 +12,7 @@ var reg = require('./routes/reg');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var admin = require('./routes/admin');
+// var test = require('./routes/test');
 //var reserve = require('./routes/reserve');
 
 var app = express();
@@ -35,6 +36,7 @@ app.use('/reg', reg);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/admin', admin);
+// app.use('/test', test);
 //app.use('/reserve', reserve);
 
 

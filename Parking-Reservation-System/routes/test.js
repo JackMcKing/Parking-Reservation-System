@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
 
+var temp;
 router.get('/', function (req, res) {
     if(req.cookies.islogin){
 
@@ -27,9 +25,12 @@ router.get('/', function (req, res) {
         title: "没车位停车场预约系统"
     });
 
-    var temp = req.get();
-    res.send(temp);
 });
 
+router.post('/',function (req,res) {
+   temp = req.get();
+   console.log(temp);
+   return;
+});
 
 module.exports = router;
