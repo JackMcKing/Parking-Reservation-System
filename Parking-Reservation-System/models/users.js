@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
-    host: '127.0.0.1',
+    host: '60.205.221.162',
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
@@ -28,7 +28,7 @@ User.prototype.save = function save(callback) {
         userpass: this.userpass
     };
 
-    var insertUser_Sql = "INSERT INTO user_info (USER_ID, USER_NAME, USER_PW) VALUES (0, ?, ?)";
+    var insertUser_Sql = "INSERT INTO user_info (USER_NAME, USER_PW) VALUES (?, ?)";
 
     pool.getConnection(function (err, connection) {
 
