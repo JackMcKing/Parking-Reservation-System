@@ -11,6 +11,10 @@ function PKinfo() {
 
 };
 
+function PKresverve() {
+
+};
+
 pool.on('connection', function (connection) {
     connection.query('SET SESSION auto_increment_increment=1');
 });
@@ -33,6 +37,7 @@ pool.getConnection(function (err, connection) {
     }
 });
 
+//insert user reserve
 
 
 module.exports = PKinfo;

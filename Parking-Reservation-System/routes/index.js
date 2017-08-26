@@ -3,11 +3,13 @@ var router = express.Router();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var PKinfo = require('../models/parking');
+var PKinfo = require('../models/parking.js');
+var Record = require('../models/record.js');
 
 router.get('/', function (req, res) {
 
     var pkinfo = new PKinfo();
+    var username = req.session.username;
 
     if(req.cookies.islogin){
 
@@ -29,16 +31,29 @@ router.get('/', function (req, res) {
 
 
     pkinfo.query(function (err, result) {
+
         if (err) {
             res.status(404).end(err);
         }else {
             res.render('index', {
                 title: "没车位停车场预约系统",
                 items: result
-            })
+            });
         }
 
-    })
+    });
+
+    Record.getRecordByUserName(username, function (err, result) {
+
+        if (err) {
+            res.status(404).end(err);
+        }else {
+            res.render('index',{
+                rows: result
+            });
+        }
+
+    });
 
 });
 

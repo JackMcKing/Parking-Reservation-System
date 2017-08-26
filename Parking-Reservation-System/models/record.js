@@ -12,20 +12,14 @@ pool.on('connection', function (connection) {
     connection.query('SET SESSION auto_increment_increment=1');
 });
 
-function Record(record){
-    this.reserveid = record.reserveid;
-    this.username = record.username;
-    this.psid= record.psid;
-    this.reservenow=record.reservenow;
-    this.reservedate=record.reservedate;
-    this.reserveintime=record.reserveintime;
-    this.reserveouttime=record.reserveouttime;
+function Record(){
 }
 
 //get user 's reserve record by username
-Record.getRecordByUserName = function getRecordByName(username, callback) {
+Record.getRecordByUserName = function getRecordByUserName(username, callback) {
 
-    var getRecordByUserName_Sql = "SELECT * FROM RESERVE_RECORD WHERE USER_NAME = ?";
+    var current_time = Date.now();
+    var getRecordByUserName_Sql = "SELECT * FROM parkspace_info WHERE PS_USERNAME = ? AND PS_TIME_BEGIN < current_time";
 
     pool.getConnection(function (err, connection) {
 
@@ -37,7 +31,6 @@ Record.getRecordByUserName = function getRecordByName(username, callback) {
                 return;
             }
 
-            connection.release();
             callback(err, result);
 
         });
@@ -46,3 +39,4 @@ Record.getRecordByUserName = function getRecordByName(username, callback) {
 
 };
 
+module.exports = Record;

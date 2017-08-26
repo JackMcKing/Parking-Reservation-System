@@ -101,12 +101,13 @@
                 </thead>
 
                 <tbody>
-                <% for (var i=0; i < items.length; i++) { %>
+                <% for (var j=0; j < rows.length; j++) { %>
                 <tr>
-                    <td><%= items[i].PS_ID %></td>
-                    <td><%= items[i].PS_FLOOR %></td>
-                    <td><%= items[i].PS_ZONE %></td>
-                    <td><%= items[i].PS_EMPTY %></td>
+                    <td><%= rows[i].PS_ID %></td>
+                    <td><%= rows[i].PS_FLOOR %></td>
+                    <td><%= rows[i].PS_ZONE %></td>
+                    <td><%= rows[i].PS_EMPTY %></td>
+                    <td><%+ rows[i].PS_TIME_BEGIN %></td>
                 </tr>
                 <% } %>
                 </tbody>
@@ -114,7 +115,6 @@
             </table>
 
         </div>
-
 
     </div>
 
