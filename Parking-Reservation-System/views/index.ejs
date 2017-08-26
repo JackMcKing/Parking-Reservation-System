@@ -72,13 +72,16 @@
                 </thead>
 
                 <tbody>
-                <% for (var i=0; i < items.length; i++) { %>
+                <% for (var i=0; i < itm.length; i++) { %>
                 <tr>
-                    <td><%= items[i].PS_ID %></td>
-                    <td><%= items[i].PS_FLOOR %></td>
-                    <td><%= items[i].PS_ZONE %></td>
-                    <td><%= items[i].PS_EMPTY %></td>
-                    <td><a href="dores">預約</a> </td>
+                    <td><%= itm[i].PS_ID %></td>
+                    <td><%= itm[i].PS_FLOOR %></td>
+                    <td><%= itm[i].PS_ZONE %></td>
+                    <td><%= itm[i].PS_EMPTY %></td>
+                    <form method="post">
+                        <button type="submit" value="Submit">預約</button>
+                    </form>
+
                 </tr>
                 <% } %>
                 </tbody>
@@ -101,13 +104,14 @@
                 </thead>
 
                 <tbody>
-                <% for (var j=0; j < rows.length; j++) { %>
+
+                <% for (var j=0; j < citm.length; j++) { %>
                 <tr>
-                    <td><%= rows[i].PS_ID %></td>
-                    <td><%= rows[i].PS_FLOOR %></td>
-                    <td><%= rows[i].PS_ZONE %></td>
-                    <td><%= rows[i].PS_EMPTY %></td>
-                    <td><%+ rows[i].PS_TIME_BEGIN %></td>
+                    <td><%= citm[i].PS_ID %></td>
+                    <td><%= citm[i].PS_FLOOR %></td>
+                    <td><%= citm[i].PS_ZONE %></td>
+                    <td><%= citm[i].PS_EMPTY %></td>
+                    <td><%+ citm[i].RESERVE_INTIME %></td>
                 </tr>
                 <% } %>
                 </tbody>

@@ -37,25 +37,27 @@ router.get('/', function (req, res) {
         }else {
             res.render('index', {
                 title: "没车位停车场预约系统",
-                items: result
+                itm: result
             });
         }
 
     });
 
-    Record.getRecordByUserName(username, function (err, result) {
+    Record.getRecordByUserName(req.session.username, function (err, result) {
 
         if (err) {
             res.status(404).end(err);
         }else {
-            res.render('index',{
-                rows: result
+            res.render('index', {
+                title: "没车位停车场预约系统",
+                citm: result
             });
         }
 
     });
 
 });
+
 
 
 module.exports = router;

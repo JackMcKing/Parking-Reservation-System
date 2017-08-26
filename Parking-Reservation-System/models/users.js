@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
-    host: '60.205.221.162',
+    host: '127.0.0.1',
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
@@ -75,9 +75,9 @@ User.getUserNumByName = function getUserNumByName(username, callback) {
 //get user info
 User.getUserByUserName = function getUserNumByName(username, callback) {
 
-    var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
+        var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
 
-    pool.getConnection(function (err, connection) {
+        pool.getConnection(function (err, connection) {
 
         if (err) throw err;
         connection.query(getUserByUserName_Sql, [username], function (err, result) {
@@ -96,6 +96,30 @@ User.getUserByUserName = function getUserNumByName(username, callback) {
 
 };
 
+//get user permission
+User.getUserpermissionByUserName = function getUserpermissionByUserName(username, callback) {
 
+    var getUserpermissionByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
+
+    pool.getConnection(function (err, connection) {
+
+        if (err) throw err;
+        connection.query(getUserpermissionByUserName_Sql, [username], function (err, result) {
+
+            if (err) {
+                console.log("getUserpermissionByUserName Error: " + err.message);
+                return
+            }
+            console.log(result);
+            
+
+            connection.release();
+            callback(err, result);
+
+        });
+
+    });
+
+};
 
 module.exports = User;

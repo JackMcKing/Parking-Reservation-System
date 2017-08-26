@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
-    host: '60.205.221.162',
+    host: '127.0.0.1',
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
@@ -12,14 +12,45 @@ pool.on('connection', function (connection) {
     connection.query('SET SESSION auto_increment_increment=1');
 });
 
-function Record(){
+function Record(user){
+    this.username = user.username;
+    this.restime = user.restime;
 }
+
+
+Record.prototype.save = function save(callback) {
+
+    var user = {
+        username: this.username,
+        restime: Date.now()
+    };
+
+    var insertUserReserve_Sql = "INSERT INTO reserve_record (USER_NAME, RESERVE_INTIME) VALUES (?, ?)";
+
+    pool.getConnection(function (err, connection) {
+
+        connection.query(insertUserReserve_Sql, [user.username, user.restime], function (err, result) {
+
+            if (err) {
+                console.log('insertUserReverse_Sql Error: ' + err.message);
+                return;
+            }
+
+            connection.release();
+            callback(err, result);
+        });
+
+    });
+
+};
+
+
 
 //get user 's reserve record by username
 Record.getRecordByUserName = function getRecordByUserName(username, callback) {
 
 
-    var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ? AND RESERVE_INTIME > now（）";//sql中now()函数用于获取当前datetime
+    var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ? AND RESERVE_INTIME > NOW()";//sql中now()函数用于获取当前datetime
 
     pool.getConnection(function (err, connection) {
 
@@ -30,13 +61,13 @@ Record.getRecordByUserName = function getRecordByUserName(username, callback) {
                 console.log("getRecordByUserName Error: " + err.message);
                 return;
             }
-
             callback(err, result);
-
         });
 
     });
 
 };
+
+
 
 module.exports = Record;

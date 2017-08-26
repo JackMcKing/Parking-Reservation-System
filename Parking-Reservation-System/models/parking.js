@@ -11,9 +11,7 @@ function PKinfo() {
 
 };
 
-function PKresverve() {
 
-};
 
 pool.on('connection', function (connection) {
     connection.query('SET SESSION auto_increment_increment=1');
@@ -25,10 +23,11 @@ pool.on('connection', function (connection) {
 pool.getConnection(function (err, connection) {
 
     PKinfo.prototype.query = function (callback) {
-        pool.query("SELECT * FROM parkspace_info WHERE PS_EMPTY = 1", function (err, result) {
+
+        pool.query("SELECT * FROM reserve_record WHERE PS_EMPTY = 1", function (err, result) {
 
             if (err) {
-                console.log("query parkspace Error" + err.message);
+                console.log("query reserve_record Error" + err.message);
                 return;
             }
             console.log("invoke PKinfo");
@@ -36,8 +35,6 @@ pool.getConnection(function (err, connection) {
         });
     }
 });
-
-//insert user reserve
 
 
 module.exports = PKinfo;
