@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
-    host: '127.0.0.1',
+    host: '60.205.221.162',
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
@@ -18,8 +18,8 @@ function Record(){
 //get user 's reserve record by username
 Record.getRecordByUserName = function getRecordByUserName(username, callback) {
 
-    var current_time = Date.now();
-    var getRecordByUserName_Sql = "SELECT * FROM parkspace_info WHERE PS_USERNAME = ? AND PS_TIME_BEGIN < current_time";
+
+    var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ? AND RESERVE_INTIME > now（）";//sql中now()函数用于获取当前datetime
 
     pool.getConnection(function (err, connection) {
 
