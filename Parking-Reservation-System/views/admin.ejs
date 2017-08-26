@@ -8,36 +8,10 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-theme.css" type="text/css">
 
-    <script>
-        window.onload = onload_function()
-        {
-            alert("onload");
-        }
-    </script>
-    <script src="/javascripts/jquery.min.js">
-        $.post("/SCheckTitle.php",
-            {
-                Sno:$.cookie('cookie_Sno'),
-            },
-            function(data){
-                //var phpdata = data;
-                obj = eval('('+data+')');
-                $(function () {
-                    var strHTML = "";
-                    for( var i =0;i<obj.length;i++){
-                        var temp = obj[i];
-                        strHTML += "<tr>";
-                        strHTML += "    <td>"+temp.Pno+"</td>";
-                        strHTML += "    <td>"+temp.Ptitle+"</td>";
-                        strHTML += "    <td>"+temp.Tname+"</td>";
-                        strHTML += "</tr>";
-                    }
-                    $("#J_tbData").html(strHTML);
-                });
-            }
-        );
-    </script>
+
+    <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascript/jquery.cookie.js"></script>
 
 </head>
 
@@ -101,6 +75,39 @@
     </div>
 </div>
 </div>
+
+<script>
+
+
+    window.onload = function()
+    {
+        res.cookie("usingStatue", "0");
+        res.cookie()
+    }
+
+    $.post("/SCheckTitle.php",
+        {
+            Sno:$.cookie('cookie_Sno'),
+        },
+        function(data){
+            //var phpdata = data;
+            obj = eval('('+data+')');
+            $(function () {
+                var strHTML = "";
+                for( var i =0;i<obj.length;i++){
+                    var temp = obj[i];
+                    strHTML += "<tr>";
+                    strHTML += "    <td>"+temp.Pno+"</td>";
+                    strHTML += "    <td>"+temp.Ptitle+"</td>";
+                    strHTML += "    <td>"+temp.Tname+"</td>";
+                    strHTML += "</tr>";
+                }
+                $("#J_tbData").html(strHTML);
+            });
+        }
+    );
+</script>
+
 </body>
 
 </html>
