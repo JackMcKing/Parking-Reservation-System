@@ -8,7 +8,35 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-theme.css" type="text/css">
 
-    <script src="/javascripts/jquery.min.js"></script>
+    <script>
+        window.onload = onload_function()
+        {
+            alert("onload");
+        }
+    </script>
+    <script src="/javascripts/jquery.min.js">
+        $.post("/SCheckTitle.php",
+            {
+                Sno:$.cookie('cookie_Sno'),
+            },
+            function(data){
+                //var phpdata = data;
+                obj = eval('('+data+')');
+                $(function () {
+                    var strHTML = "";
+                    for( var i =0;i<obj.length;i++){
+                        var temp = obj[i];
+                        strHTML += "<tr>";
+                        strHTML += "    <td>"+temp.Pno+"</td>";
+                        strHTML += "    <td>"+temp.Ptitle+"</td>";
+                        strHTML += "    <td>"+temp.Tname+"</td>";
+                        strHTML += "</tr>";
+                    }
+                    $("#J_tbData").html(strHTML);
+                });
+            }
+        );
+    </script>
     <script src="/javascripts/bootstrap.js"></script>
 
 </head>
@@ -34,7 +62,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">主页</a></li>
                     <li><a href="/logout">分析</a> </li>
-                    <li><a href="/search">搜索</a></li>
+                    <li><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            搜索 <span class="caret"></span>
+                        </a></li>
                     <li><a href="/logout">注销</a> </li>
                 </ul>
                 <form class="navbar-form navbar-left">
@@ -52,47 +82,16 @@
         <div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <ul class="nav nav-pills">
-                    ...
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Dropdown <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            ...
-                        </ul>
-                    </li>
-                    ...
-                </ul>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">进行中</a></li>
+                <li role="presentation"><a href="#">未开始</a></li>
+                <li role="presentation"><a href="#">已结束</a></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="inuse">
-                    <script>
-                        $.post("/SCheckTitle.php",
-                            {
-                                Sno:$.cookie('cookie_Sno'),
-                            },
-                            function(data){
-                                //var phpdata = data;
-                                obj = eval('('+data+')');
-                                $(function () {
-                                    var strHTML = "";
-                                    for( var i =0;i<obj.length;i++){
-                                        var temp = obj[i];
-                                        strHTML += "<tr>";
-                                        strHTML += "    <td>"+temp.Pno+"</td>";
-                                        strHTML += "    <td>"+temp.Ptitle+"</td>";
-                                        strHTML += "    <td>"+temp.Tname+"</td>";
-                                        strHTML += "</tr>";
-                                    }
-                                    $("#J_tbData").html(strHTML);
-                                });
-                            }
-                        );
-                    </script>
+
                 </div>
                 <div role="tabpanel" class="tab-pane" id="unuse">此处有表</div>
                 <div role="tabpanel" class="tab-pane" id="used">此处有表</div>
