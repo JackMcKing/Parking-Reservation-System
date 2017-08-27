@@ -13,14 +13,14 @@ pool.on('connection', function (connection) {
     connection.query('SET SESSION auto_increment_increment=1');
 });
 
-function Record(record){
+
+function Record(record) {
     this.username = record.username;
     this.psid = record.psid;
     this.reservenow = record.reservenow;
     this.reserveintime = record.reserveintime;
     this.reserveouttime = record.reserveouttime;
 }
-
 
 Record.prototype.save = function save(callback) {
 
@@ -57,7 +57,7 @@ Record.prototype.save = function save(callback) {
 Record.getRecordByUserName = function getRecordByUserName(username, callback) {
 
 
-    var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ? AND RESERVE_INTIME > NOW()";//sql中now()函数用于获取当前datetime
+    var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ?";//sql中now()函数用于获取当前datetime
 
     pool.getConnection(function (err, connection) {
 
@@ -75,7 +75,5 @@ Record.getRecordByUserName = function getRecordByUserName(username, callback) {
     });
 
 };
-
-
 
 module.exports = Record;
