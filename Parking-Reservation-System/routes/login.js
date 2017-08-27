@@ -71,7 +71,8 @@ router.post('/', function(req, res) {
 
 
              res.locals.userpermission = userpermission;
-             req.session.userpermission = res.locals.userpermission;
+             req.session.userpermission =
+                 res.locals.userpermission;
              console.log(req.session.userpermission);
 
 
