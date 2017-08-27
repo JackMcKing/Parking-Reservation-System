@@ -18,8 +18,8 @@ router.post('/', function(req, res) {
 
     var userName = req.body.txtUserName,
         userPwd = req.body.txtUserPwd,
-        isRem = req.body.chbRem,
-        userpermission = req.body.permission;
+        isRem = req.body.chbRem;
+   //     userpermission = req.body.permission;
 
     User.getUserByUserName(userName, function (err, result) {
        // console.log(result);
@@ -48,66 +48,30 @@ router.post('/', function(req, res) {
         else {
 
             if(isRem) {
-
                 res.cookie('islogin', userName, { maxAge: 60000 });
-
             }
-            /*User.getUserpermissionByUserName(userName, function (err, result) {
-                console.log(userName);
 
-               // console.log(result,'login');
-
-                if(result[0].USER_PERMISSION == 0){
-                    console.log('用户权限');
-                    userpermission = 0;
-                }
-
-                else {
-                    console.log('管理员权限');
-                    userpermission = 1;
-                }
-
-             res.locals.userpermission = userpermission;
-             req.session.userpermission = res.locals.userpermission;
-             console.log(req.session.userpermission);
-
-             })*/
             res.locals.username = userName;
             req.session.username = res.locals.username;
             console.log(req.session.username);
 
+            User.getUserpermissionByUserName(userName, function (err, result) {
+                console.log("permission: " + userName);
 
+                if (result[0].USER_PERMISSION === 1){
+                    res.redirect('/admin');
+                }
 
-         };
-        User.getUserpermissionByUserName(userName, function (err, result) {
-            console.log(userName);
+                if (result[0].USER_PERMISSION === 0){
+                    res.redirect('/');
+                    return;
+                }
 
-            // console.log(result,'login');
+            })
 
-            if(result[0].USER_PERMISSION == 0){
-                console.log('用户权限');
-                userpermission = 0;
-            }
+         }
 
-            else {
-                console.log('管理员权限');
-                userpermission = 1;
-            }
-
-            res.locals.userpermission = userpermission;
-            req.session.userpermission = res.locals.userpermission;
-            console.log(req.session.userpermission);
-            //console.log(userpermission,'userpermission');
-            if(userpermission === 1){
-                res.redirect('/admin');
-            }
-            else {
-                res.redirect('/');
-            }
-            //res.redirect('/');
-        })
-
-    })
-})
+    });
+});
 
 module.exports = router;

@@ -7,8 +7,6 @@ var Record = require('../models/record.js');
 
 router.get('/', function (req, res) {
 
-
-
     if(req.cookies.islogin){
 
         console.log('cookies: ' + req.cookies.islogin);

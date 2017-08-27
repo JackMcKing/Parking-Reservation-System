@@ -5,7 +5,7 @@ var pool = mysql.createPool({
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
-    port: 3306
+port: 3306
 });
 
 pool.on('connection', function (connection) {
