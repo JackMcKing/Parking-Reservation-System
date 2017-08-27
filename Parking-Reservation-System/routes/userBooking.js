@@ -43,8 +43,8 @@ router.post('/userBooking', function (req, res) {
     var username = req.session.username;
     var psid = Math.floor(Math.random()*192);
     var reservenow = Date.now();
-    var reserveintime = req.body.strReserveintime;
-    var reserveouttime =req.body.strReserveouttime;
+    var reserveintime = req.body.in_time;
+    var reserveouttime =req.body.out_time;
     var newRecord = new Record({
         username: username,
         psid : psid,
