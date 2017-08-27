@@ -27,9 +27,7 @@ if (rubbish == 0) {//统计每日达到的累计预约量
         return result;
     });
 }else if(rubbish == 1){//统计各时段预约进入车场量
-    var reserveInTimeSql = "SELECT DATE_FORMAT(RESERVE_INTIME, \"%H\" ) , COUNT( * ) \n" +
-    "FROM reserve_record\n" +
-    "GROUP BY DATE_FORMAT(RESERVE_INTIME, \"%H\" ) "
+    var reserveInTimeSql = "SELECT DATE_FORMAT(RESERVE_INTIME, \"%H\" ) , COUNT( * ) FROM reserve_record GROUP BY DATE_FORMAT(RESERVE_INTIME, \"%H\")  "
     connection.query(reserveInTimeSql,function (err, result) {
         if(err){
             console.log('[SELECT ERROR] - ',err.message);
@@ -38,9 +36,7 @@ if (rubbish == 0) {//统计每日达到的累计预约量
         return result;
     });
 } else if (rubbish == 2) {//统计每日预约订单量
-    var DailyreserveSql = "SELECT DATE_FORMAT(RESERVE_INTIME, \"%Y-%m-%d\" ) , COUNT( * ) \n" +
-        "FROM reserve_record\n" +
-        "GROUP BY DATE_FORMAT(RESERVE_INTIME, \"%Y-%m-%d\" ) "
+    var DailyreserveSql = "SELECT DATE_FORMAT(RESERVE_INTIME, \"%Y-%m-%d\" ) , COUNT( * ) FROM reserve_record GROUP BY DATE_FORMAT(RESERVE_INTIME, \"%Y-%m-%d\" ) "
     connection.query(DailyreserveSql, function (err, result) {
         if (err) {
             console.log('[SELECT ERROR] - ', err.message);
