@@ -23,6 +23,7 @@ function User(user){
 
 //save data
 User.prototype.save = function save(callback) {
+
     var user = {
         username: this.username,
         userpass: this.userpass
@@ -32,15 +33,20 @@ User.prototype.save = function save(callback) {
 
     pool.getConnection(function (err, connection) {
 
-        connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result) {
+        connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result, insertId) {
 
             if (err) {
                 console.log('insertUser_Sql Error: ' + err.message);
+                insertId = 1;
                 return;
+            }
+            else {
+                console.log('insertUser_Sql Success');
+                insertId = 0;
             }
 
             connection.release();
-            callback(err, result);
+            callback(err, result, insertId);
 
         });
     });

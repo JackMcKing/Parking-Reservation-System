@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
             return;
         }
 
-        newUser.save(function (err, result) {
+        newUser.save(function (err, result, insertId) {
 
             if (err) {
                 res.locals.error = err;
@@ -50,7 +50,7 @@ router.post('/', function (req, res) {
                 return;
             }
 
-            if (result.insertId > 0){
+            if (insertId == 0){
 
                 res.locals.success = "注册成功, 请登陆";
 
