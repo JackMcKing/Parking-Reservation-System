@@ -2,11 +2,19 @@
 
 @font-face {
   font-family: "dd-icon";
+<<<<<<< Updated upstream
   src:url("../javascripts/dd-icon/dd-icon.eot");
   src:url("../javascripts/dd-icon/dd-icon.eot?#iefix") format("embedded-opentype"),
     url("../javascripts/dd-icon/dd-icon.woff") format("woff"),
     url("../javascripts/dd-icon/dd-icon.ttf") format("truetype"),
     url("../javascripts/dd-icon/dd-icon.svg#dd-icon") format("svg");
+=======
+  src:url("dd-icon/dd-icon.eot");
+  src:url("dd-icon/dd-icon.eot?#iefix") format("embedded-opentype"),
+    url("dd-icon/dd-icon.woff") format("woff"),
+    url("dd-icon/dd-icon.ttf") format("truetype"),
+    url("dd-icon/dd-icon.svg#dd-icon") format("svg");
+>>>>>>> Stashed changes
   font-weight: normal;
   font-style: normal;
 
