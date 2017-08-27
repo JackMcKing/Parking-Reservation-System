@@ -2,11 +2,16 @@ var express = require('express');
 var router = express.Router();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+<<<<<<< HEAD
 var PKinfo = require('../models/parking.js');
 var Record = require('../models/record.js');
 
 router.get('/', function (req, res) {
 
+=======
+
+router.get('/', function (req, res) {
+>>>>>>> parent of 55de586... index layout change for easier understanding
     if(req.cookies.islogin){
 
         console.log('cookies: ' + req.cookies.islogin);
@@ -24,6 +29,7 @@ router.get('/', function (req, res) {
         return;
     }
 
+<<<<<<< HEAD
 });
 
 /*
@@ -44,6 +50,11 @@ function findSlots(req, res, next) {
 }
 
 function findUserRes(req, res, next) {
+=======
+    res.render('index', {
+        title: "没车位停车场预约系统"
+    });
+>>>>>>> parent of 55de586... index layout change for easier understanding
 
     Record.getRecordByUserName(res.locals.username, function (err, result) {
 
@@ -67,7 +78,10 @@ function renderResult(req, res) {
 
     });
 
+<<<<<<< HEAD
 }
 
 */
+=======
+>>>>>>> parent of 55de586... index layout change for easier understanding
 module.exports = router;

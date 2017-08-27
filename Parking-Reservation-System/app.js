@@ -12,9 +12,14 @@ var reg = require('./routes/reg');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var admin = require('./routes/admin');
+<<<<<<< HEAD
 // var test = require('./routes/test');
 
 //var reserve = require('./routes/reserve');
+=======
+var query = require('./routes/query');
+var myres = require('./routes/myres');
+>>>>>>> parent of 55de586... index layout change for easier understanding
 
 var app = express();
 
@@ -37,9 +42,14 @@ app.use('/reg', reg);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/admin', admin);
+<<<<<<< HEAD
 // app.use('/test', test);
 
 //app.use('/reserve', reserve);
+=======
+app.use('/query', query);
+app.use('/myres', myres);
+>>>>>>> parent of 55de586... index layout change for easier understanding
 
 
 

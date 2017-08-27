@@ -1,4 +1,6 @@
 var mysql = require('mysql');
+//var express = require('express');
+//var PKinfo = express.Router();
 
 var pool = mysql.createPool({
     host: '127.0.0.1',
@@ -30,8 +32,13 @@ pool.getConnection(function (err, connection) {
                 console.log("query reserve_record Error" + err.message);
                 return;
             }
+<<<<<<< HEAD
             console.log("invoke PKinfo");
            // callback(err, result);
+=======
+            console.log("invoke");
+            callback(err, result);
+>>>>>>> parent of 55de586... index layout change for easier understanding
         });
     }
 });

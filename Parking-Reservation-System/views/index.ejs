@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div id="top" class="container">
+<div class="container">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,7 +49,7 @@
 
 
 
-<div id="bottom" class="container"> <!-- header-->
+<div class="container"> <!-- header-->
 
     <div class="jumbotron">
         <h2>欢迎使用没车位停车场预约系统<small>你好，旅行者</small></h2>
@@ -57,6 +57,7 @@
 
     <div class="jumbotron">
 
+<<<<<<< HEAD
         <button id="btn1" type="button" class="btn btn-primary btn-lg btn-block">點此查看車位狀態</button>
 
         <div id="db_table1">
@@ -121,35 +122,36 @@
         </div>
 
     </div>
+=======
+        <form action="query">
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="点此查看车位信息">
+        </form>
+
+        <form action="myres">
+            <input class="btn btn-default btn-lg btn-block" type="submit" value="点此查看我的预约">
+        </form>
+
+>>>>>>> parent of 55de586... index layout change for easier understanding
+
+        <!-- do not remove these
+        <form>
+            <input onclick='window.location="/query"; return false;' value="test" type="submit" />
+        </form>
+        -->
+
+    </div>
 
 </div>
+
+
+
+
+
+
+
+
+
 
 </body>
 
 </html>
-
-
-<script type="text/javascript">
-
-    $(function () {
-
-        $('#bottom').hide();
-        $('#bottom').fadeIn(400);
-
-        $('#db_table1').hide();
-        $('#btn1').click(function () {
-
-            $(this).next().slideToggle(200);
-
-        });
-
-        $('#db_table2').hide();
-        $('#btn2').click(function () {
-
-            $(this).next().slideToggle(400);
-
-        });
-
-    });
-
-</script>
