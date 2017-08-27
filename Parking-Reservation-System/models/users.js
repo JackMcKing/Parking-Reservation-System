@@ -1,11 +1,12 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
+    connectionLimit: 10,
     host: '127.0.0.1',
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
-port: 3306
+    port: 3306
 });
 
 pool.on('connection', function (connection) {
@@ -28,7 +29,7 @@ User.prototype.save = function save(callback) {
         userpass: this.userpass
     };
 
-    var insertUser_Sql = "INSERT INTO user_info (USER_NAME, USER_PW) VALUES (?, ?)";
+    var insertUser_Sql = "INSERT INTO user_info (USER_ID, USER_NAME, USER_PW) VALUES (0, ?, ?)";
 
     pool.getConnection(function (err, connection) {
 
@@ -45,6 +46,7 @@ User.prototype.save = function save(callback) {
         });
     });
 };
+
 
 //get user number
 User.getUserNumByName = function getUserNumByName(username, callback) {
@@ -74,9 +76,9 @@ User.getUserNumByName = function getUserNumByName(username, callback) {
 //get user info
 User.getUserByUserName = function getUserNumByName(username, callback) {
 
-        var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
+    var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
 
-        pool.getConnection(function (err, connection) {
+    pool.getConnection(function (err, connection) {
 
         if (err) throw err;
         connection.query(getUserByUserName_Sql, [username], function (err, result) {
@@ -95,31 +97,6 @@ User.getUserByUserName = function getUserNumByName(username, callback) {
 
 };
 
-//get user permission
-User.getUserpermissionByUserName = function getUserpermissionByUserName(username, callback) {
 
-
-    var getUserpermissionByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
-
-    pool.getConnection(function (err, connection) {
-
-        if (err) throw err;
-        connection.query(getUserpermissionByUserName_Sql, [username], function (err, result) {
-
-            if (err) {
-                console.log("getUserpermissionByUserName Error: " + err.message);
-                return
-            }
-            //console.log(result);
-
-
-            connection.release();
-            callback(err, result);
-
-        });
-
-    });
-
-};
 
 module.exports = User;

@@ -73,16 +73,13 @@
                 </thead>
 
                 <tbody>
-                <% for (var i=0; i < itm.length; i++) { %>
+                <% for (var i=0; i < items.length; i++) { %>
                 <tr>
-                    <td><%= itm[i].PS_ID %></td>
-                    <td><%= itm[i].PS_FLOOR %></td>
-                    <td><%= itm[i].PS_ZONE %></td>
-                    <td><%= itm[i].PS_EMPTY %></td>
-                    <form method="post">
-                        <button type="submit" value="Submit">預約</button>
-                    </form>
-
+                    <td><%= items[i].PS_ID %></td>
+                    <td><%= items[i].PS_FLOOR %></td>
+                    <td><%= items[i].PS_ZONE %></td>
+                    <td><%= items[i].PS_EMPTY %></td>
+                    <td><a href="dores">預約</a> </td>
                 </tr>
                 <% } %>
                 </tbody>
@@ -106,52 +103,27 @@
 
                 <tbody>
 
-                <% for (var j=0; j < citm.length; j++) { %>
-                <tr>
-                    <td><%= citm[i].PS_ID %></td>
-                    <td><%= citm[i].PS_FLOOR %></td>
-                    <td><%= citm[i].PS_ZONE %></td>
-                    <td><%= citm[i].PS_EMPTY %></td>
-                    <td><%+ citm[i].RESERVE_INTIME %></td>
-                </tr>
-                <% } %>
                 </tbody>
 
             </table>
 
         </div>
 
-    </div>
-=======
-        <form action="query">
-            <input class="btn btn-primary btn-lg btn-block" type="submit" value="点此查看车位信息">
-        </form>
-
-        <form action="myres">
-            <input class="btn btn-default btn-lg btn-block" type="submit" value="点此查看我的预约">
-        </form>
-
->>>>>>> parent of 55de586... index layout change for easier understanding
-
-        <!-- do not remove these
-        <form>
-            <input onclick='window.location="/query"; return false;' value="test" type="submit" />
-        </form>
-        -->
-
-    </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $(function () {
+        $('#bottom').hide();
+        $('#bottom').fadeIn(400);
+        $('#db_table1').hide();
+        $('#btn1').click(function () {
+            $(this).next().slideToggle(200);
+        });
+        $('#db_table2').hide();
+        $('#btn2').click(function () {
+            $(this).next().slideToggle(400);
+        });
+    });
+</script>
