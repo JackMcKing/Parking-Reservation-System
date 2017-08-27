@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-theme.css" type="text/css">
+
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+
+</head>
+
+<body>
+<div id="top" class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Flint</a>
+            </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <% if (locals.username) { %>
+                    <li class="active"><a href="#"><%= username %></a></li>
+                    <li><a href="/logout">注销</a> </li>
+                    <% } %>
+                </ul>
+                <form class="navbar-form navbar-left">
+
+                </form>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div> <!--nav bar-->
+
+
+
+
+<div id="bottom" class="container"> <!-- header-->
+
+    <div class="jumbotron">
+        <h2>欢迎使用没车位停车场预约系统<small>你好，旅行者</small></h2>
+    </div>
+
+    <div class="jumbotron">
+
+        <button id="btn1" type="button" class="btn btn-primary btn-lg btn-block">點此查看車位狀態</button>
+
+        <div id="db_table1">
+
+            <table class="table table-hover table-bordered" >
+                <thead>
+                <tr class="active">
+                    <th>车位编号</th>
+                    <th>车位层数</th>
+                    <th>车位区域</th>
+                    <th>车位状态</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% for (var i=0; i < itm.length; i++) { %>
+                <tr>
+                    <td><%= itm[i].PS_ID %></td>
+                    <td><%= itm[i].PS_FLOOR %></td>
+                    <td><%= itm[i].PS_ZONE %></td>
+                    <td><%= itm[i].PS_EMPTY %></td>
+                    <form method="post">
+                        <button type="submit" value="Submit">預約</button>
+                    </form>
+
+                </tr>
+                <% } %>
+                </tbody>
+
+            </table>
+        </div>
+
+        <button id="btn2" type="button" class="btn btn-default btn-lg btn-block">點此查看我的預約</button>
+
+        <div id="db_table2">
+
+            <table class="table table-hover table-bordered" >
+                <thead>
+                <tr class="active">
+                    <th>车位编号</th>
+                    <th>车位层数</th>
+                    <th>车位区域</th>
+                    <th>车位状态</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <% for (var j=0; j < citm.length; j++) { %>
+                <tr>
+                    <td><%= citm[i].PS_ID %></td>
+                    <td><%= citm[i].PS_FLOOR %></td>
+                    <td><%= citm[i].PS_ZONE %></td>
+                    <td><%= citm[i].PS_EMPTY %></td>
+                    <td><%+ citm[i].RESERVE_INTIME %></td>
+                </tr>
+                <% } %>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#bottom').hide();
+        $('#bottom').fadeIn(400);
+
+        $('#db_table1').hide();
+        $('#btn1').click(function () {
+
+            $(this).next().slideToggle(200);
+
+        });
+
+        $('#db_table2').hide();
+        $('#btn2').click(function () {
+
+            $(this).next().slideToggle(400);
+
+        });
+
+    });
+
+</script>

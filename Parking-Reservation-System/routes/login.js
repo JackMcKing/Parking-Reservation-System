@@ -63,8 +63,7 @@ router.post('/', function(req, res) {
                 }
 
                 if (result[0].USER_PERMISSION === 0){
-                    res.redirect('/');
-                    return;
+                    res.redirect('/userBooking');
                 }
 
             })

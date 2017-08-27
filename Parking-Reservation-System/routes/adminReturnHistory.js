@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 var connection = mysql.createConnection({
-    host     : '60.225.201.162',
+    host     : 'localhost',
     user     : 'root',
     password : 'root123',
     port: '3306',
@@ -14,7 +14,7 @@ connection.connect();
 
 
 router.get('/', function(req, res) {
-    res.render('admin');
+    res.render('adminReturnHistory');
 });
 
 router.post('/', function(req, res) {
