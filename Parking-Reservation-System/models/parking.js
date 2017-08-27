@@ -22,19 +22,21 @@ pool.on('connection', function (connection) {
 
 pool.getConnection(function (err, connection) {
 
-    PKinfo.prototype.query = function (callback) {
+    PKinfo.prototype.query = function () {
 
-        pool.query("SELECT * FROM reserve_record WHERE PS_EMPTY = 1", function (err, result) {
+        connection.query("SELECT * FROM reserve_record WHERE PS_EMPTY = 1", function (err, result) {
 
             if (err) {
                 console.log("query reserve_record Error" + err.message);
                 return;
             }
             console.log("invoke PKinfo");
-            callback(err, result);
+           // callback(err, result);
         });
     }
 });
+
+//insert user reserve
 
 
 module.exports = PKinfo;

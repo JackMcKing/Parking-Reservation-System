@@ -61,6 +61,7 @@ Record.getRecordByUserName = function getRecordByUserName(username, callback) {
                 console.log("getRecordByUserName Error: " + err.message);
                 return;
             }
+            console.log("invoke getRecordByUserName");
             callback(err, result);
         });
 
