@@ -9,27 +9,34 @@ var pool = mysql.createPool({
 });
 
 pool.on('connection', function (connection) {
+    console.log("record pool on");
     connection.query('SET SESSION auto_increment_increment=1');
 });
 
-function Record(user){
-    this.username = user.username;
-    this.restime = user.restime;
-}
 
+function Record(record) {
+    this.username = record.username;
+    this.psid = record.psid;
+    this.reservenow = record.reservenow;
+    this.reserveintime = record.reserveintime;
+    this.reserveouttime = record.reserveouttime;
+}
 
 Record.prototype.save = function save(callback) {
 
-    var user = {
+    var record = {
         username: this.username,
-        restime: Date.now()
+        psid : this.psid,
+        reservenow : this.reservenow,
+        reserveintime : this.reserveintime,
+        reserveouttime : this.reserveouttime
     };
 
-    var insertUserReserve_Sql = "INSERT INTO reserve_record (USER_NAME, RESERVE_INTIME) VALUES (?, ?)";
+    var insertUserReserve_Sql = "INSERT INTO reserve_record (USER_NAME,PS_ID,RESERVE_NOW,RESERVE_INTIME,RESERVE_OUTTIME) VALUES (?, ?, ?, ?, ?)";
 
     pool.getConnection(function (err, connection) {
 
-        connection.query(insertUserReserve_Sql, [user.username, user.restime], function (err, result) {
+        connection.query(insertUserReserve_Sql, [user.username, user.psid, user.reservenow, user.reserveintime, user.reserveouttime], function (err, result) {
 
             if (err) {
                 console.log('insertUserReverse_Sql Error: ' + err.message);
