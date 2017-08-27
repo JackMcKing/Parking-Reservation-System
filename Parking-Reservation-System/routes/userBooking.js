@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var sd = require('silly-datetime');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 //var PKinfo = require('../models/parking.js');
@@ -46,7 +47,7 @@ router.post('/', function (req, res) {
 
     var username = req.session.username;
     var psid = Math.floor(Math.random()*192);
-    var reservenow = Date.now();
+    var reservenow = sd.format(new Date(), 'YYYY-MM-DD HH:mm');
     var reserveintime = req.body.in_time;
     var reserveouttime =req.body.out_time;
     var newRecord = new Record({
