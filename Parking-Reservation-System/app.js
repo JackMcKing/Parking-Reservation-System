@@ -13,6 +13,7 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var admin = require('./routes/admin');
 var userBooking = require('./routes/userBooking');
+var userBookingHistory = require('./routes/userBookingHistory');
 // var test = require('./routes/test');
 
 //var reserve = require('./routes/reserve');
@@ -39,6 +40,7 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/admin', admin);
 app.use('/userBooking',userBooking);
+app.use('/userBookingHistory',userBookingHistory);
 // app.use('/test', test);
 
 //app.use('/reserve', reserve);
