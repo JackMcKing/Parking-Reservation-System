@@ -52,7 +52,9 @@ router.get('/', function (req, res) {
             return;
         }
         console.log("search success");
-        data = result;
+        var temp = {"status": "success", "name": "ewqe"};
+        return res.render("userBookingHistory",temp);
+        // data = result;
         // res.json(data);
         // req.data = result
         // if(req.data){
@@ -61,15 +63,15 @@ router.get('/', function (req, res) {
     });
 
     // res.json(data);
-    res.render('userBookingHistory',data);
-    // res.json(data);
-    console.log("发送成功");
+    // res.json('userBookingHistory',data);
+    // // res.json(data);
+    // console.log("发送成功");
     // var result = Record.getRecordByUserName(username);
     // console.log(result);
 
 });
 
-connection.end();
+//connection.end();
 
 
 // router.get('/',function (req,res) {
