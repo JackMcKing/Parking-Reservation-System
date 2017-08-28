@@ -5,7 +5,7 @@ var pool = mysql.createPool({
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
-port: 3306
+    port: 3306
 });
 
 pool.on('connection', function (connection) {
@@ -23,6 +23,7 @@ function User(user){
 
 //save data
 User.prototype.save = function save(callback) {
+
     var user = {
         username: this.username,
         userpass: this.userpass
@@ -32,15 +33,20 @@ User.prototype.save = function save(callback) {
 
     pool.getConnection(function (err, connection) {
 
-        connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result) {
+        connection.query(insertUser_Sql, [user.username, user.userpass], function (err, result, insertId) {
 
             if (err) {
                 console.log('insertUser_Sql Error: ' + err.message);
+                insertId = 1;
                 return;
+            }
+            else {
+                console.log('insertUser_Sql Success');
+                insertId = 0;
             }
 
             connection.release();
-            callback(err, result);
+            callback(err, result, insertId);
 
         });
     });
@@ -75,9 +81,9 @@ User.getUserNumByName = function getUserNumByName(username, callback) {
 //get user info
 User.getUserByUserName = function getUserNumByName(username, callback) {
 
-        var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
+    var getUserByUserName_Sql = "SELECT * FROM user_info WHERE USER_NAME = ?";
 
-        pool.getConnection(function (err, connection) {
+    pool.getConnection(function (err, connection) {
 
         if (err) throw err;
         connection.query(getUserByUserName_Sql, [username], function (err, result) {
