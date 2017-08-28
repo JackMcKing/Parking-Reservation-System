@@ -64,7 +64,7 @@ router.post('/', function (req, res) {
     console.log('req.body strReserveintime: ' + reserveintime);
     console.log('req.body strReserveouttime: ' + reserveouttime);
 
-    save(function (err, result) {
+    newRecord.save(function (err, result) {
 
         if (err) {
             res.local.error = err
