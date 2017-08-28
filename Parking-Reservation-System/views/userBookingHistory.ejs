@@ -72,16 +72,9 @@
         <table class="table table-bordered table-striped">
             <tr>
                 <th>预约单号</th><th>车位号</th><th>入场时间</th><th>出场时间</th>
+            <%- JSON.stringify(data) %>
+            </tr>
 
-            </tr>
-            <% for(var i=0; i < data.length; i++) { %>
-            <tr>
-                <td><%= data[i].RESERVE_ID %></td>
-                <td><%= data[i].PS_ID %></td>
-                <td><%= data[i].RESERVE_INTIME %></td>
-                <td><%= data[i].RESERVE_OUTTIME %></td>
-            </tr>
-            <% } %>
         </table>
     </div>
 
