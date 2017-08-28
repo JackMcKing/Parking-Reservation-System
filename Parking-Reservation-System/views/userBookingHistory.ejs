@@ -43,7 +43,7 @@
                 <ul class="nav navbar-nav">
                     <% if (locals.username) { %>
                     <li><a href="/userBooking">预约车位</a></li>
-                    <li class="active"><a href="#">查看车位</a> </li>
+                    <li class="active"><a href="#">预约信息</a> </li>
                     <li><a href="/logout">注销</a> </li>
                     <% } %>
                 </ul>
@@ -64,7 +64,16 @@
     <div>
         <h2>欢迎使用没车位停车场<br>预约系统<small><br>你好，旅行者</small></h2>
     </div>
-
+    <div>
+        <table>
+            <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+                <td><%= data[i].id %></td>
+                <td><%= data[i].name %></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
 
 </div>
 
