@@ -31,22 +31,52 @@ router.get('/', function (req, res) {
     if (req.session.username){
 
         console.log('session: ' + req.session.username);
-        res.locals.username = req.session.username;
-
-
+        // res.locals.username = req.session.username;
 
     }else{
         res.redirect('/login');
         //return;
     }
 
-    res.render('userBookingHistory', {
-        title: "没车位停车场预约系统"
+    // res.render('userBookingHistory', {
+    //     title: "没车位停车场预约系统"
+    // });
+
+    var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ?";
+    var username = req.session.username;
+    var data = 0;
+
+    connection.query(getRecordByUserName_Sql,[username],function (err,result) {
+        if(err){
+            console.log('[SELECT ERROR] - ',err.message);
+            return;
+        }
+        console.log("search success");
+        data = result;
+        // res.json(data);
+        // req.data = result
+        // if(req.data){
+        //     res.end(JSON.stringify(data));
+        // }
     });
 
-    //next();
+    // res.json(data);
+    res.render('userBookingHistory',data);
+    // res.json(data);
+    console.log("发送成功");
+    // var result = Record.getRecordByUserName(username);
+    // console.log(result);
 
 });
+
+connection.end();
+
+
+// router.get('/',function (req,res) {
+//     var getRecordByUserName_Sql = "SELECT * FROM reserve_record WHERE USER_NAME = ?";
+//     connection.query()
+//
+// });
 /*
 var data = {
     data: {
