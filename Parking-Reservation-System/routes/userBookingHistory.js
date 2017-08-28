@@ -9,7 +9,7 @@ var Record = require('../models/record.js');
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host     : 'localhost',
+    host     : '60.205.221.162',
     user     : 'root',
     password : 'root123',
     port: '3306',
@@ -42,13 +42,44 @@ router.get('/', function (req, res) {
 
     res.render('userBookingHistory', {
         title: "没车位停车场预约系统"
-
-
-
     });
+
     //next();
 
 });
+/*
+var data = {
+    data: {
+        Id: '20170113',
+        Name: 'hgdqstudio'
+    }
+};
+router.post('/userBookingHistory',function (req, res) {
+    // 打印post请求的数据内容
+        res.end(JSON.stringify(data));
+
+});
+*/
+
+
+
+
+/*
+
+function json(req, res) {
+    var data = { "a": ["1"],
+        "b": ["2"],
+        "c": ["3"] };
+    JSON.parse(data);
+    res.render('userBookingHistory', {
+        title: "没车位停车场预约系统",
+        itm: req.Slots,
+        citm: req.UserRes
+
+    });
+
+}*/
+
 
 // router.get('/', function (req, res) {
 //

@@ -77,11 +77,11 @@ router.post('/', function (req, res) {
                 title: "没车位停车场预约系统"
 
             });
-
             return
 
         }
-
+        res.redirect('/userBookingHistory')
+        return
     });
 
 });
