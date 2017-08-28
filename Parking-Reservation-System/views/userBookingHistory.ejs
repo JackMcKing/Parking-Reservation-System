@@ -38,12 +38,12 @@
                 <a class="navbar-brand" href="/">Flint</a>
             </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <% if (locals.username) { %>
-                    <li class="active"><a href="#">预约车位</a></li>
-                    <li><a href="/userBooking">查看车位</a> </li>
+                    <li><a href="/userBooking">预约车位</a></li>
+                    <li class="active"><a href="#">查看车位</a> </li>
                     <li><a href="/logout">注销</a> </li>
                     <% } %>
                 </ul>
@@ -65,71 +65,9 @@
         <h2>欢迎使用没车位停车场<br>预约系统<small><br>你好，旅行者</small></h2>
     </div>
 
-    <div class="jumbotron">
 
-
-                    <form class="demo" role="form" method="post">
-                        <p>请选择日期：<input type="date" class="input" id="pickdate" min="2017-08-28"/></p>
-                        <p>请选择入场时间：<input type="time" class="input" id="in_time" /></p>
-                        <p>请选择出场时间：<input type="time" class="input" id="out_time" /></p>
-                        <button type="submit" class="btn btn-primary center-block">提 交</button>
-                    </form>
-
-                <script type="text/javascript" src="/javascripts/jquery-1.12.3.min.js"></script>
-                <script src="/javascripts/datedropper.min.js"></script>
-                <script src="/javascripts/timedropper.min.js"></script>
-                <script>
-                    $("#pickdate").dateDropper({
-                        animate: false,
-                        format: 'Y-m-d',
-                        maxYear: '2020'
-                    });
-                    $("#in_time").timeDropper({
-                        meridians: false,
-                        format: 'HH:mm:00',
-                    });
-                    $("#out_time").timeDropper({
-                        meridians: false,
-                        format: 'HH:mm:00',
-                    });
-                </script>
-
-
-
-
-
-    </div>
 </div>
 
 </body>
 
 </html>
-
-
-
-
-<!--<script type="text/javascript">-->
-
-    <!--$(function () {-->
-
-        <!--$('#bottom').hide();-->
-        <!--$('#bottom').fadeIn(400);-->
-
-        <!--$('#db_table1').hide();-->
-        <!--$('#btn1').click(function () {-->
-
-            <!--$(this).next().slideToggle(200);-->
-
-        <!--});-->
-
-        <!--$('#db_table2').hide();-->
-        <!--$('#btn2').click(function () {-->
-
-            <!--$(this).next().slideToggle(400);-->
-
-        <!--});-->
-
-    <!--});-->
-
-<!--</script>-->
-
