@@ -1,18 +1,18 @@
 var mysql = require('mysql');
 
-var pool = mysql.createPool({
-    host: '127.0.0.1',
+var db = mysql.createPool({
+    host: '60.205.221.162',
     user: 'root',
     password: 'root123',
     database: 'prs_alpha',
     port: 3306
 });
-
+/*
 pool.on('connection', function (connection) {
     console.log("record pool on");
     connection.query('SET SESSION auto_increment_increment=1');
 });
-
+*/
 
 function Record(record) {
     this.username = record.username;
@@ -34,11 +34,11 @@ Record.prototype.save = function save(callback) {
         reserveouttime : this.reserveouttime
     };
 
-    var insertUserReserve_Sql = "INSERT INTO reserve_record (USER_NAME,PS_ID,RESERVE_NOW,RESERVE_DATE,RESERVE_INTIME,RESERVE_OUTTIME) VALUES (?, ?, ?, ?, ?)";
+    var insertUserReserve_Sql = "INSERT INTO reserve_record (USER_NAME,PS_ID,RESERVE_NOW,RESERVE_DATE,RESERVE_INTIME,RESERVE_OUTTIME) VALUES (?, ?, ?, ?, ?, ?)";
 
-    pool.getConnection(function (err, connection) {
+    db.getConnection(function (err, connection) {
 
-        connection.query(insertUserReserve_Sql, [record.username, record.psid, record.reservenow, record.reservedate, record.reserveintime, record.reserveouttime], function (err, result) {
+        db.query(insertUserReserve_Sql, [record.username, record.psid, record.reservenow, record.reservedate, record.reserveintime, record.reserveouttime], function (err, result) {
 
             if (err) {
                 console.log('insertUserReverse_Sql Error: ' + err.message);
